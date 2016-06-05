@@ -1,20 +1,18 @@
 # ZJU Information Retrieval 2016 Final Project
 
---------
-
 ## Setup Steps:
 
 ### 1. install nltk & ntlk data
 
 nltk: 
 
-```sudo pip install -U nltk```
+``sudo pip install -U nltk``
 
 necessary ntlk data punkt:
 
-```import ntlk```
+``import ntlk``
 
-```ntlk.download()```
+``ntlk.download()``
 
 and then pick **punkt** and **stopwords** to install
 
