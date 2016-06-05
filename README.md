@@ -8,7 +8,7 @@ nltk:
 
 ``sudo pip install -U nltk``
 
-necessary ntlk data punkt:
+ntlk data:
 
 ``import ntlk``
 
