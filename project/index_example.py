@@ -1,5 +1,4 @@
 import Index
-import cPickle
 import os
 
 path = '../Reuters'

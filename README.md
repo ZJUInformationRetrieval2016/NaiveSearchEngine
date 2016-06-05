@@ -1,7 +1,5 @@
 # ZJU Information Retrieval 2016 Final Project
 
---------
-
 ## Setup Steps:
 
 ### 1. install nltk & ntlk data
