@@ -2,6 +2,9 @@ import nltk
 import os
 from collections import defaultdict
 
+def dd():
+	return defaultdict(int)
+
 class Index(object):
 	def __init__(self, path, StopwordRemoval=False, Stemming=False, Debug=False):
 		#run in corpus folder
@@ -20,8 +23,11 @@ class Index(object):
 			self._stop = nltk.corpus.stopwords.words('english')
 		if Stemming:
 			self._stemmer = nltk.PorterStemmer()
+		
 		#index is a dict of dict
-		self._index = defaultdict(lambda : defaultdict(int))
+		#self._index = defaultdict(lambda : defaultdict(int))
+		self._index = defaultdict(dd)
+
 		for document in documents:
 			if Debug:
 				print('processing document {0}...'.format(document))
@@ -37,8 +43,13 @@ class Index(object):
 			if StopwordRemoval:
 				tokens = [token for token in tokens
 							if token not in self._stop]
+
+			def StemToken(token):
+				return self._stemmer.stem(token)
+
 			if Stemming:
-				tokens = map(lambda token:self._stemmer.stem(token), tokens)
+				tokens = map(StemToken(token), tokens)
+				#tokens = map(lambda token:self._stemmer.stem(token), tokens)
 			#index[token][documentID] -- term frequency -- tf
 			#size of dict index[token] -- document frequency -- df
 			for token in tokens:
@@ -62,6 +73,7 @@ class Index(object):
 	def df(self, term):
 		term = self._preprocess(term)
 		return len(self._index[term])
+
 
 
 		
