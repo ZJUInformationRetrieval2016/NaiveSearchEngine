@@ -13,7 +13,7 @@ class Index(object):
 			documents = [f for f in documents if f.endswith('.html')]
 			# use a small part of the corpus
 			if Debug:
-				documents = [f for f in documents if int(f.split('.')[0])<100]
+				documents = [f for f in documents if int(f.split('.')[0])<1000]
 
 		# build index
 		self._documents = documents
@@ -31,29 +31,36 @@ class Index(object):
 		for document in documents:
 			if Debug:
 				print('processing document {0}...'.format(document))
-			#example of document : 21393.html
-			#documentID : 21393
-			#split document name by dot and parse first part as int
-			documentID = int(document.split('.')[0])
-			#read content and tokenization
-			content = open(path+'/'+document)
-			raw = content.read()
-			raw = raw.lower()
-			tokens = nltk.word_tokenize(raw)
-			if StopwordRemoval:
-				tokens = [token for token in tokens
-							if token not in self._stop]
+			try:
+				'''example of document : 21393.html
+				documentID : 21393
+				split document name by dot and parse first part as int'''
+				documentID = int(document.split('.')[0])
+				#read content and tokenization
+				content = open(path+'/'+document, errors='ignore')
+				raw = content.read()
+				raw = raw.lower()
+				tokens = nltk.word_tokenize(raw)
+				if StopwordRemoval:
+					tokens = [token for token in tokens
+								if token not in self._stop]
 
-			def StemToken(token):
-				return self._stemmer.stem(token)
+				def StemToken(token):
+					return self._stemmer.stem(token)
 
-			if Stemming:
-				tokens = map(StemToken(token), tokens)
-				#tokens = map(lambda token:self._stemmer.stem(token), tokens)
-			#index[token][documentID] -- term frequency -- tf
-			#size of dict index[token] -- document frequency -- df
-			for token in tokens:
-				self._index[token][documentID]+=1
+				if Stemming:
+					tokens = map(StemToken(token), tokens)
+					#tokens = map(lambda token:self._stemmer.stem(token), tokens)
+				'''
+				index[token][documentID] -- term frequency -- tf
+				size of dict index[token] -- document frequency -- df
+				'''
+				for token in tokens:
+					self._index[token][documentID]+=1
+			except Exception as e:
+				print('error occur when reading {0}'.format(documentID))
+				raise e
+			
 
 	def _preprocess(self, term):
 		term = term.lower()
@@ -66,13 +73,22 @@ class Index(object):
 	def tf(self, term, document=None):
 		term = self._preprocess(term)
 		if document is None:
-			return self._index[term]
+			if term in self._index:
+				return self._index[term]
+			else:
+				return dd()
 		else:
-			return self._index[term][document]
+			if term in self._index and document in self._index[term]:
+				return self._index[term][document]
+			else:
+				return 0
 
 	def df(self, term):
 		term = self._preprocess(term)
-		return len(self._index[term])
+		if term in self._index:
+			return len(self._index[term])
+		else:
+			return 0
 
 
 
