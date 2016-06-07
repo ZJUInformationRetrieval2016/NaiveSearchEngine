@@ -90,6 +90,9 @@ class Index(object):
 		else:
 			return 0
 
+	def words(self):
+		return self._index.keys()
+
 
 
 		

@@ -33,4 +33,5 @@ print('takes {0} seconds to load index'.format(end-begin))
 #document frequency
 print(index_reload.tf('January'))
 print(index_reload.df('January'))
+print(index_reload.words())#get all the words
 
