@@ -8,11 +8,11 @@ nltk:
 
 ``sudo pip install -U nltk``
 
-ntlk data:
+nltk data:
 
-``import ntlk``
+``import nltk``
 
-``ntlk.download()``
+``nltk.download()``
 
 and then pick **punkt** and **stopwords** to install
 
