@@ -4,7 +4,7 @@
 
 ### 1. install nltk & ntlk data
 
-nltk: 
+nltk:
 
 ``sudo pip install -U nltk``
 
@@ -30,5 +30,4 @@ run index_example.py
 
 ```python index_example.py```
 
-
-
+## Vector Space Specifications

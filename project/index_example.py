@@ -3,13 +3,16 @@ import pickle
 import os
 import time
 import sys
+import VectorSpace
 print (sys.version)
 
-path = '../Reuters'
+path = '../Reuters_reduced'
 begin = time.perf_counter()
 index = Index.Index(path)
 end = time.perf_counter()
 print('takes {0} seconds to build index'.format(end-begin))
+
+print('N = {0}'.format(index.N))
 
 #term frequency for a given term -- return a dict
 print(index.tf('January'))
@@ -31,7 +34,8 @@ end = time.perf_counter()
 print('takes {0} seconds to load index'.format(end-begin))
 
 #document frequency
-print(index_reload.tf('January'))
+print(index_reload.tf('January', 1))
 print(index_reload.df('January'))
 print(index_reload.words())#get all the words
 
+print(index_reload.docIDs)

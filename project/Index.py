@@ -1,5 +1,6 @@
 import nltk
 import os
+import array
 from collections import defaultdict
 
 def dd():
@@ -23,11 +24,13 @@ class Index(object):
 			self._stop = nltk.corpus.stopwords.words('english')
 		if Stemming:
 			self._stemmer = nltk.PorterStemmer()
-		
+
 		#index is a dict of dict
 		#self._index = defaultdict(lambda : defaultdict(int))
 		self._index = defaultdict(dd)
 
+		self.N = 0;
+		self.docIDs = [];
 		for document in documents:
 			if Debug:
 				print('processing document {0}...'.format(document))
@@ -36,6 +39,8 @@ class Index(object):
 				documentID : 21393
 				split document name by dot and parse first part as int'''
 				documentID = int(document.split('.')[0])
+				print("parsing Doc {0}".format(self.N))
+				self.docIDs.append(documentID)
 				#read content and tokenization
 				content = open(path+'/'+document, errors='ignore')
 				raw = content.read()
@@ -57,10 +62,12 @@ class Index(object):
 				'''
 				for token in tokens:
 					self._index[token][documentID]+=1
+
+				self.N = self.N + 1
 			except Exception as e:
 				print('error occur when reading {0}'.format(documentID))
 				raise e
-			
+
 
 	def _preprocess(self, term):
 		term = term.lower()
@@ -92,7 +99,3 @@ class Index(object):
 
 	def words(self):
 		return self._index.keys()
-
-
-
-		
