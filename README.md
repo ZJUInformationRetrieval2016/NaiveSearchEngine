@@ -42,6 +42,6 @@ It provides with two methods:
 
 ```d_weight_t(self, docID, term)``` to get the normalized term weight for a term in a doc
 
-Examples:
+Examples in ```space_example.py```
 
-```space_example.py```
+
