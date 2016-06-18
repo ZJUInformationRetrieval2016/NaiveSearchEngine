@@ -41,3 +41,7 @@ It provides with two methods:
 ```q_weight_t(term)``` to get the idf of a term
 
 ```d_weight_t(self, docID, term)``` to get the normalized term weight for a term in a doc
+
+Examples:
+
+```space_example.py```
