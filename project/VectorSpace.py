@@ -44,12 +44,12 @@ class VectorSpace(object):
             cnt += 1
 
     def q_weight_t(self, term):
-        term = index._preprocess(term)
+        term = Index.Index._preprocess(Index.Index, term)
         return self.term_idf[term]
 
     def d_weight_t(self, docID, term):
-        term = index._preprocess(term)
-        if term in doc_weight_t[docID]:
+        term = Index.Index._preprocess(Index.Index, term)
+        if term in self.doc_weight_t[docID]:
             return self.doc_weight_t[docID][term]
         else:
             return 0

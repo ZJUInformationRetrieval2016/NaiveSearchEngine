@@ -30,4 +30,14 @@ run index_example.py
 
 ```python index_example.py```
 
-## Vector Space Specifications
+## Vector Space Specifications:
+
+Use pickle to read ``space.pickle`` to obtain a VectorSpace object
+
+The VectorSpace class is defined in VectorSpace.py
+
+It provides with two methods:
+
+```q_weight_t(term)``` to get the idf of a term
+
+```d_weight_t(self, docID, term)``` to get the normalized term weight for a term in a doc

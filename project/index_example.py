@@ -6,7 +6,7 @@ import sys
 import VectorSpace
 print (sys.version)
 
-path = '../Reuters_reduced'
+path = '../Reuters'
 begin = time.perf_counter()
 index = Index.Index(path)
 end = time.perf_counter()
