@@ -51,10 +51,11 @@ def topK(Scores,K):
     return result
 
 def sort(query,K = DOCNUM):
-    if K>DOCNUM:
-        K = DOCNUM
-    if K<=0:
+    if K==0:
         return []
+    if (K>DOCNUM) | (K<0):
+        K = DOCNUM
+
     terms = []
     for i in range(len(query)):
         if (query[i] in terms):
