@@ -50,7 +50,7 @@ def topK(Scores,K):
         result.append(pair)
     return result
 
-def sort(query,K):
+def sort(query,K = DOCNUM):
     if K>DOCNUM:
         K = DOCNUM
     if K<=0:

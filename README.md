@@ -1,4 +1,4 @@
-# ZJU Information Retrieval 2016 Final Project
+﻿# ZJU Information Retrieval 2016 Final Project
 
 ## Setup Steps:
 
@@ -43,5 +43,14 @@ It provides with two methods:
 ```d_weight_t(self, docID, term)``` to get the normalized term weight for a term in a doc
 
 Examples in ```space_example.py```
+## Score Sort Specifications:
+
+The ScoreSort is defined in ScoreSort.py
+
+It provides with one method:
+
+```sort(query,K)``` to get a list of (docID, score) after sorting. query is a list of terms, and K indicates top K
+
+Examples in ```scoresort_example.py```
 
 
