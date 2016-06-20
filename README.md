@@ -52,5 +52,12 @@ It provides with one method:
 ```sort(query,K)``` to get a list of (docID, score) after sorting. query is a list of terms, and K indicates top K
 
 Examples in ```scoresort_example.py```
+## Bool Search Sepcifications:
+The bool is defined in BoolSearch.py
+
+It provides with two methods:
+```parse(index, statement)``` to get the result of classical bool research.
+```search(index, statement)``` to get the result of score sort using result of ```parse``` as a filter.
+Examples in ```boolsearch_example.py```
 
 
