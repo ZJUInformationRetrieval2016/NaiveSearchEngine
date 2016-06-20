@@ -57,9 +57,9 @@ The bool is defined in BoolSearch.py
 
 It provides with two methods:
 
-```parse(index, statement)``` to get the result of classical bool research:
+```parse(index, statement)``` to get the result of classical bool research
 
-```search(index, statement)``` to get the result of score sort using result of ```parse``` as a filter:
+```search(index, statement)``` to get the result of score sort using result of ```parse``` as a filter
 
 Examples in ```boolsearch_example.py```
 
