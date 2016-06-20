@@ -62,5 +62,8 @@ It provides with two methods:
 ```search(index, statement, K)``` to get the top K results of score sort using result of ```parse``` as a filter
 
 Examples in ```boolsearch_example.py```
+##Main
+Simple type in the searching statement following symbol '#'.
 
+While using bool search, make sure to add '-b' at the very end.
 

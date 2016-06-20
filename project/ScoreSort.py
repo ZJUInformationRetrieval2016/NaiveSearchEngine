@@ -1,4 +1,4 @@
-#! python3
+﻿#! python3
 import random
 import Index
 import pickle
@@ -8,6 +8,8 @@ import sys
 import VectorSpace
 DOCNUM = 21577
 
+with open('space.pickle', 'rb') as f:
+    space = pickle.load(f)
 #def d_weight_t(docID,term):
 #    #vec = []
 #    #for i in range(len(terms)):
@@ -61,10 +63,9 @@ def sort(query,K = DOCNUM):
         if (query[i] in terms):
             continue
         terms.append(query[i])
-    with open('space.pickle', 'rb') as f:
-        space = pickle.load(f)
     Scores = []
     for i in range(DOCNUM):
+
         score = 0
         for j in range(len(terms)):
             weight = space.d_weight_t(i,terms[j])
@@ -78,4 +79,3 @@ def sort(query,K = DOCNUM):
     #    test.append(Sc[i][0])
     result = topK(Scores,K)
     return result
-

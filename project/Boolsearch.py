@@ -1,12 +1,17 @@
-﻿import Index
+﻿import pickle
+
+import Index
 import ScoreSort
 
 DOCNUM = 21577
 query = []
 
-def search(index, statement, K=DOCNUM):
+with open('index.pickle', 'rb') as f:
+    index = pickle.load(f)
+
+def search(statement, K=DOCNUM):
     # find the hard conditions
-    require = parse(index, statement)
+    require = parse(statement)
 
     # get the result of score sort.
     ret = ScoreSort.sort(query)
@@ -81,7 +86,7 @@ def _not(l):
     return res
     
 # get the hard condition
-def parse(index, statement):
+def parse(statement):
     query.clear()
     ors = statement.split('OR')
     # disjunctions

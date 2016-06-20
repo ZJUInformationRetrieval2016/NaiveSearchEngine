@@ -1,10 +1,14 @@
-import nltk
+﻿import nltk
 import os
 import array
 from collections import defaultdict
 
 def dd():
 	return defaultdict(int)
+
+def parse(statement):
+    tokens = nltk.word_tokenize(statement)
+    return tokens
 
 class Index(object):
 	def __init__(self, path, StopwordRemoval=False, Stemming=False, Debug=False):
@@ -68,7 +72,6 @@ class Index(object):
 				print('error occur when reading {0}'.format(documentID))
 				raise e
 
-
 	def _preprocess(self, term):
 		term = term.lower()
 
@@ -99,3 +102,4 @@ class Index(object):
 
 	def words(self):
 		return self._index.keys()
+
