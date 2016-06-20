@@ -1,4 +1,4 @@
-import ScoreSort
+﻿import ScoreSort
 
 query = ['statement','period','that','ended','on','Wednesday']
 K = 20
