@@ -37,7 +37,7 @@ def _and(la, lb):
         return lb;
     if (not lb): 
         return la;
-    res = []
+    res = [-1]
     i = 0
     j = 0
     while (i < len(la) or j < len(lb)):
@@ -58,7 +58,7 @@ def _or(la, lb):
         return lb;
     if (not lb): 
         return la;
-    res = []
+    res = [-1]
     i = 0
     j = 0
     while (i < len(la) or j < len(lb)):
@@ -78,7 +78,7 @@ def _or(la, lb):
 # negate a list
 def _not(l):
     if l:
-        res = []
+        res = [-1]
         for j in range(1, l[0]):
             res.append(j)
         for i in range(len(l) - 1):
@@ -97,11 +97,11 @@ def parse(statement):
     query.clear()
     ors = statement.split('OR')
     # disjunctions
-    res_or = []
+    res_or = [-1]
     for term in ors:
         ands = term.split('AND')
         # conjunctions
-        res_and = []
+        res_and = [-1]
         for s in ands:
             s = s.strip()
             if (s[0:3].startswith('NOT')):
@@ -112,6 +112,7 @@ def parse(statement):
                 query.append(s)
                 ret = [x for x in index.tf(s)]
 
+            ret.append(-1)
             ret.sort()
             res_and = _and(res_and, ret)
         res_or = _or(res_or, res_and)
