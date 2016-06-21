@@ -77,13 +77,20 @@ def _or(la, lb):
 
 # negate a list
 def _not(l):
-    res = []
-    for j in range(0, l[0]):
-        res.append(j)
-    for i in range(len(l) - 1):
-        for j in range(l[i] + 1, l[i + 1]):
+    if l:
+        res = []
+        for j in range(1, l[0]):
             res.append(j)
-    return res
+        for i in range(len(l) - 1):
+            for j in range(l[i] + 1, l[i + 1]):
+                res.append(j)
+        for j in range(l[len(l) - 1], DOCNUM):
+            res.append(j)
+        return res
+    else:
+        for j in range(1, DOCNUM):
+            res.append(j)
+        return res
     
 # get the hard condition
 def parse(statement):
@@ -98,6 +105,7 @@ def parse(statement):
         for s in ands:
             s = s.strip()
             if (s[0:3].startswith('NOT')):
+                #query.append(s[4:].strip())
                 ret = [x for x in index.tf(s[4:].strip())]
                 ret = _not(ret)
             else:

@@ -1,4 +1,4 @@
-import nltk
+﻿import nltk
 import os
 import time
 import pickle
@@ -12,7 +12,7 @@ if (__name__ == '__main__'):
         _input = ''
         _input = input('# ')
         if (_input.endswith('-b')):
-            ret = Boolsearch.search(_input, 16)
+            ret = Boolsearch.search(_input[:-2], 16)
             for i in ret:
                 print(i)
         else:
