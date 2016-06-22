@@ -33,11 +33,11 @@ def search(statement, K=DOCNUM):
 
 #merge two list using and
 def _and(la, lb):
-    if (not la): 
+    if (la[0] == -1): 
         return lb;
-    if (not lb): 
+    if (lb[0] == -1): 
         return la;
-    res = [-1]
+    res = []
     i = 0
     j = 0
     while (i < len(la) or j < len(lb)):
@@ -54,11 +54,11 @@ def _and(la, lb):
 
 #merge two list using or
 def _or(la, lb):
-    if (not la): 
+    if (la == None): 
         return lb;
-    if (not lb): 
+    if (lb == None): 
         return la;
-    res = [-1]
+    res = []
     i = 0
     j = 0
     while (i < len(la) or j < len(lb)):
@@ -78,7 +78,7 @@ def _or(la, lb):
 # negate a list
 def _not(l):
     if l:
-        res = [-1]
+        res = []
         for j in range(1, l[0]):
             res.append(j)
         for i in range(len(l) - 1):
@@ -97,7 +97,7 @@ def parse(statement):
     query.clear()
     ors = statement.split('OR')
     # disjunctions
-    res_or = [-1]
+    res_or = []
     for term in ors:
         ands = term.split('AND')
         # conjunctions
@@ -112,7 +112,6 @@ def parse(statement):
                 query.append(s)
                 ret = [x for x in index.tf(s)]
 
-            ret.append(-1)
             ret.sort()
             res_and = _and(res_and, ret)
         res_or = _or(res_or, res_and)
