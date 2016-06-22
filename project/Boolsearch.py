@@ -33,6 +33,10 @@ def search(statement, K=DOCNUM):
 
 #merge two list using and
 def _and(la, lb):
+    if (len(la) == 0):
+        return [];
+    if (len(lb) == 0):
+        return [];
     if (la[0] == -1): 
         return lb;
     if (lb[0] == -1): 
@@ -54,10 +58,10 @@ def _and(la, lb):
 
 #merge two list using or
 def _or(la, lb):
-    if (la == None): 
-        return lb;
-    if (lb == None): 
-        return la;
+    if (len(la) == 0):
+        return lb
+    if (len(lb) == 0):
+        return la
     res = []
     i = 0
     j = 0
